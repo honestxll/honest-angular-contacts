@@ -8,7 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   signInForm = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
@@ -16,8 +16,8 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {}
 
-  get username() {
-    return this.signInForm.get('username');
+  get email() {
+    return this.signInForm.get('email');
   }
 
   get password() {

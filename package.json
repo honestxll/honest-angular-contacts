@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "node ./api/app.js"
+    "api": "node ./api/app.js",
+    "dev": "ng serve & node ./api/app.js"
   },
   "private": true,
   "dependencies": {

@@ -8,9 +8,18 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TagModule } from './pages/tag/tag.module';
 import { ContactModule } from './pages/contact/contact.module';
 import { UserModule } from './pages/user/user.module';
+import { LayoutComponent } from './components/layout/layout.component';
+
+import 'jquery';
+import 'bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SidebarComponent,
+    LayoutComponent
+  ],
   imports: [
     BrowserModule,
     TagModule,

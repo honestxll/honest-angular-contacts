@@ -18,16 +18,16 @@ import 'bootstrap';
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
     TagModule,
     ContactModule,
     UserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

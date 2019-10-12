@@ -1,1 +1,30 @@
-<p>sign-in works!</p>
+<div class="full-page login d-flex justify-content-center align-items-center">
+  <form
+    class="wrapper d-flex flex-column justify-content-center align-items-center"
+  >
+    <div class="form-group">
+      <label>username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="输入用户名"
+      />
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input
+        type="text"
+        name="password"
+        class="form-control"
+        placeholder="输入密码"
+      />
+    </div>
+    <button type="submit" class="btn btn-secondary btn-block">Sign In</button>
+    <div class="message mt-1">
+      <small>
+        <a class="text-muted" routerLink="/sign-up">没有帐号？先注册一个。</a>
+      </small>
+    </div>
+  </form>
+</div>

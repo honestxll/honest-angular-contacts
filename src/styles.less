@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+input,
+button {
+  border-radius: 0 !important;
+}
+
+/* 登录表单 */
+.full-page.login {
+  width: 100vw;
+  height: 100vh;
+  background: #424346;
+  .wrapper {
+    padding: 30px;
+    width: 500px;
+    min-height: 340px;
+    background: white;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.07);
+    .form-group {
+      width: 100%;
+      label {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: bold;
+      }
+    }
+  }
+}

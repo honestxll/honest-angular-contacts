@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import 'jquery';
+import 'bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -11,8 +14,7 @@ import { ContactModule } from './pages/contact/contact.module';
 import { UserModule } from './pages/user/user.module';
 import { LayoutComponent } from './components/layout/layout.component';
 
-import 'jquery';
-import 'bootstrap';
+import { httpInterceptorProviders } from './interceptors/providers';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import 'bootstrap';
     UserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

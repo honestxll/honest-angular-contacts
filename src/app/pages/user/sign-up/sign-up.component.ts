@@ -42,6 +42,7 @@ export class SignUpComponent implements OnInit {
             title: '注册成功',
           });
           localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
           setTimeout(() => {
             this.router.navigate(['/contacts']);
           }, 1500);

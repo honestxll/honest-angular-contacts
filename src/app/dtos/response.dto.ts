@@ -7,5 +7,5 @@ export class ErrorDto {
 
 export class SessionSuccessDto {
   token: string;
-  user: {};
+  user: any;
 }

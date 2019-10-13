@@ -4,30 +4,32 @@ import { LayoutComponent } from 'src/app/components/layout/layout.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { NewComponent } from './new/new.component';
+import { AuthGuard } from '../../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'tags',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: ListComponent
+        component: ListComponent,
       },
       {
         path: 'edit',
-        component: EditComponent
+        component: EditComponent,
       },
       {
         path: 'new',
-        component: NewComponent
-      }
-    ]
-  }
+        component: NewComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class TagRoutingModule {}

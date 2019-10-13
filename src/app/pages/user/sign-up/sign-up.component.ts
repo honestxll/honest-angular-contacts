@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { ResponseDto } from 'src/app/dtos/response.dto';
+import { ErrorDto, SessionSuccessDto } from 'src/app/dtos/response.dto';
 import { Toast } from '../../../utils/toast';
 import { Router } from '@angular/router';
 
@@ -35,17 +35,18 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     if (this.signUpForm.valid) {
       this.userService.signUp(this.signUpForm.value).subscribe({
-        next: response => {
+        next: (response: SessionSuccessDto) => {
           console.log(response);
           Toast.fire({
             type: 'success',
             title: '注册成功',
           });
+          localStorage.setItem('token', response.token);
           setTimeout(() => {
             this.router.navigate(['/contacts']);
           }, 1500);
         },
-        error: error => {
+        error: (error: ErrorDto) => {
           if (!error.ok) {
             let msg = '';
             if (error.status === 409) {

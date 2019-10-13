@@ -11,4 +11,8 @@ export class UserService {
   signUp(user: User) {
     return this.http.post(`${API}/users`, user);
   }
+
+  signIn(user: User) {
+    return this.http.post(`${API}/session`, user);
+  }
 }

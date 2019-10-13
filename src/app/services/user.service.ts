@@ -15,4 +15,8 @@ export class UserService {
   signIn(user: User) {
     return this.http.post(`${API}/session`, user);
   }
+
+  logout() {
+    return this.http.delete(`${API}/session`);
+  }
 }

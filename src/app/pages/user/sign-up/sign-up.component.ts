@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
 import { ResponseDto } from 'src/app/dtos/response.dto';
+import { Toast } from '../../../utils/toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,6 +19,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private router: Router,
   ) {}
 
   ngOnInit() {}
@@ -31,18 +33,27 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit: ', this.signUpForm.value);
     if (this.signUpForm.valid) {
       this.userService.signUp(this.signUpForm.value).subscribe({
-        next: val => console.log(val),
+        next: response => {
+          console.log(response);
+          Toast.fire({
+            type: 'success',
+            title: '注册成功',
+          });
+          setTimeout(() => {
+            this.router.navigate(['/contacts']);
+          }, 1500);
+        },
         error: error => {
           if (!error.ok) {
-            Swal.mixin({
-              toast: true,
-              position: 'center',
-              showConfirmButton: false,
-              timer: 3000,
-              title: '登录失败',
+            let msg = '';
+            if (error.status === 409) {
+              msg = ',邮箱已被占用';
+            }
+            Toast.fire({
+              type: 'error',
+              title: `注册失败${msg}`,
             });
           }
         },

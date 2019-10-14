@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
 import { Toast } from 'src/app/utils/toast';
 import { Router } from '@angular/router';
+import { TagService } from 'src/app/services/tag.service';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-new',
@@ -10,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./new.component.less'],
 })
 export class NewComponent implements OnInit {
+  tags: Tag[];
+
   contactForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -22,15 +26,21 @@ export class NewComponent implements OnInit {
         ),
       ],
     ],
+    tagId: [0],
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
+    private tagService: TagService,
     private router: Router,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.tagService.index().subscribe((tags: Tag[]) => {
+      this.tags = tags;
+    });
+  }
 
   get name() {
     return this.contactForm.get('name');

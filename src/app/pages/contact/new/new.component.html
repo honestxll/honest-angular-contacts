@@ -53,5 +53,12 @@
       手机号格式错误
     </div>
   </div>
+  <div class="form-group">
+    <label>标签</label>
+    <select class="form-control" name="tagId" formControlName="tagId">
+      <option value="0">默认</option>
+      <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.title }}</option>
+    </select>
+  </div>
   <button type="submit" class="btn btn-secondary">保存</button>
 </form>

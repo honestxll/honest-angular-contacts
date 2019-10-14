@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./new.component.less'],
 })
 export class NewComponent implements OnInit {
-  contactFrom = this.formBuilder.group({
+  contactForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: [

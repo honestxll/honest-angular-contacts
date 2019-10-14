@@ -13,7 +13,7 @@ import { Toast } from 'src/app/utils/toast';
 export class EditComponent implements OnInit {
   contactId = this.route.snapshot.params.id;
 
-  contactFrom = this.formBuilder.group({
+  contactForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: [

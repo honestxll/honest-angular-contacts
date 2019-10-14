@@ -4,6 +4,8 @@ import { ContactService } from 'src/app/services/contact.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contact } from 'src/app/models/contact.model';
 import { Toast } from 'src/app/utils/toast';
+import { TagService } from 'src/app/services/tag.service';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-edit',
@@ -12,6 +14,8 @@ import { Toast } from 'src/app/utils/toast';
 })
 export class EditComponent implements OnInit {
   contactId = this.route.snapshot.params.id;
+
+  tags: Tag[];
 
   contactForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -25,11 +29,13 @@ export class EditComponent implements OnInit {
         ),
       ],
     ],
+    tagId: [0],
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
+    private tagService: TagService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
@@ -40,6 +46,10 @@ export class EditComponent implements OnInit {
       console.log(newContact);
 
       this.contactForm.setValue(newContact);
+    });
+
+    this.tagService.index().subscribe((tags: Tag[]) => {
+      this.tags = tags;
     });
   }
 

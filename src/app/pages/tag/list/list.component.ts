@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TagService } from 'src/app/services/tag.service';
 import { Tag } from 'src/app/models/tag.model';
 import { Toast } from 'src/app/utils/toast';
+import { mainPageSwitchTransition } from '../../../animations/main.animations';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.less'],
+  animations: [mainPageSwitchTransition],
 })
 export class ListComponent implements OnInit {
+  @HostBinding('@mainPageSwitchTransition') state = 'activated';
   tags: Tag[];
 
   constructor(

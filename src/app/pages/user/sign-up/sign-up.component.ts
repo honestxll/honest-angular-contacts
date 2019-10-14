@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ErrorDto, SessionSuccessDto } from 'src/app/dtos/response.dto';
-import { Toast } from '../../../utils/toast';
 import { Router } from '@angular/router';
+import { Toast } from '../../../utils/toast';
+import { sessionTransition } from '../../../animations/user.animations';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.less'],
+  animations: [sessionTransition],
 })
 export class SignUpComponent implements OnInit {
+  @HostBinding('@sessionTransition') state = 'activated';
   signUpForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],

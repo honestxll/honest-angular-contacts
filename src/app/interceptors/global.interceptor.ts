@@ -13,7 +13,7 @@ export class GlobalInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token') || '';
     const authReq = req.clone({
       headers: req.headers.set('X-Access-Token', token),
     });

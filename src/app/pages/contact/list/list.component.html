@@ -21,7 +21,9 @@
       <td>{{ contact.email }}</td>
       <td>{{ contact.phone }}</td>
       <td>
-        <span class="badge badge-pill badge-warning">默认</span>
+        <span class="badge badge-pill badge-warning">
+          {{ getTag(contact.tagId) }}
+        </span>
       </td>
       <td>
         <span

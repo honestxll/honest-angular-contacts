@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact.model';
 import { Toast, Confirm } from 'src/app/utils/toast';
+import { Tag } from 'src/app/models/tag.model';
+import { TagService } from 'src/app/services/tag.service';
 
 @Component({
   selector: 'app-list',
@@ -10,11 +12,18 @@ import { Toast, Confirm } from 'src/app/utils/toast';
 })
 export class ListComponent implements OnInit {
   contacts: Contact[];
-  constructor(private contactService: ContactService) {}
+  tags: Tag[];
+  constructor(
+    private contactService: ContactService,
+    private tagService: TagService,
+  ) {}
 
   ngOnInit() {
     this.contactService.index().subscribe((data: Contact[]) => {
       this.contacts = data;
+    });
+    this.tagService.index().subscribe((tags: Tag[]) => {
+      this.tags = tags;
     });
   }
 
@@ -37,5 +46,15 @@ export class ListComponent implements OnInit {
         });
       }
     });
+  }
+
+  getTag(tagId: number): string {
+    if (this.tags) {
+      const index = this.tags.findIndex(t => +t.id === +tagId);
+      if (index !== -1) {
+        return this.tags[index].title || '';
+      }
+      return '默认';
+    }
   }
 }

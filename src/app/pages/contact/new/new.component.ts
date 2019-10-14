@@ -33,15 +33,15 @@ export class NewComponent implements OnInit {
   ngOnInit() {}
 
   get name() {
-    return this.contactFrom.get('name');
+    return this.contactForm.get('name');
   }
 
   get email() {
-    return this.contactFrom.get('email');
+    return this.contactForm.get('email');
   }
 
   get phone() {
-    return this.contactFrom.get('phone');
+    return this.contactForm.get('phone');
   }
 
   onSubmit() {
@@ -63,7 +63,7 @@ export class NewComponent implements OnInit {
       },
     };
     return this.contactService
-      .store(this.contactFrom.value)
+      .store(this.contactForm.value)
       .subscribe(observer);
   }
 }

@@ -39,25 +39,25 @@ export class EditComponent implements OnInit {
       const { id, userId, ...newContact } = contact;
       console.log(newContact);
 
-      this.contactFrom.setValue(newContact);
+      this.contactForm.setValue(newContact);
     });
   }
 
   get name() {
-    return this.contactFrom.get('name');
+    return this.contactForm.get('name');
   }
 
   get email() {
-    return this.contactFrom.get('email');
+    return this.contactForm.get('email');
   }
 
   get phone() {
-    return this.contactFrom.get('phone');
+    return this.contactForm.get('phone');
   }
 
   onSubmit() {
     this.contactService
-      .update(this.contactId, this.contactFrom.value)
+      .update(this.contactId, this.contactForm.value)
       .subscribe(() => {
         Toast.fire({
           type: 'success',

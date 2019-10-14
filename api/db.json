@@ -32,27 +32,7 @@
     {
       "id": 4,
       "title": "公司"
-    },
-    {
-      "title": "哈哈",
-      "userId": 11,
-      "id": 5
     }
   ],
-  "contacts": [
-    {
-      "name": "张三123",
-      "email": "zs@zs.com",
-      "phone": "123456",
-      "userId": 15,
-      "id": 1
-    },
-    {
-      "name": "李四456",
-      "email": "ls@lisi.com",
-      "phone": "15801230123",
-      "userId": 15,
-      "id": 2
-    }
-  ]
+  "contacts": []
 }

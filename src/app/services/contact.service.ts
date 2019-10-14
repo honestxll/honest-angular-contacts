@@ -20,4 +20,12 @@ export class ContactService {
   delete(contactId: number) {
     return this.http.delete(`${API}/contacts/${contactId}`);
   }
+
+  show(contactId: number) {
+    return this.http.get(`${API}/contacts/${contactId}`);
+  }
+
+  update(contactId: number, contact: Contact) {
+    return this.http.patch(`${API}/contacts/${contactId}`, contact);
+  }
 }

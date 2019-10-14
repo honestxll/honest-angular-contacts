@@ -24,7 +24,11 @@
         <span class="badge badge-pill badge-warning">默认</span>
       </td>
       <td>
-        <span class="badge badge-info mr-2 cursor-pointer">编辑</span>
+        <span
+          class="badge badge-info mr-2 cursor-pointer"
+          [routerLink]="['/contacts/edit', contact.id]"
+          >编辑</span
+        >
         <span
           class="badge badge-secondary cursor-pointer"
           (click)="delete(contact.id)"

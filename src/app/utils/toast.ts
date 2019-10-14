@@ -6,3 +6,11 @@ export const Toast = Swal.mixin({
   showConfirmButton: false,
   timer: 3000,
 });
+
+export const Confirm = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-danger mr-3',
+    cancelButton: 'btn btn-secondary',
+  },
+  buttonsStyling: false,
+});

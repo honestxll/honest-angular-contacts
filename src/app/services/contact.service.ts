@@ -16,4 +16,8 @@ export class ContactService {
   store(contact: Contact) {
     return this.http.post(`${API}/contacts`, contact);
   }
+
+  delete(contactId: number) {
+    return this.http.delete(`${API}/contacts/${contactId}`);
+  }
 }

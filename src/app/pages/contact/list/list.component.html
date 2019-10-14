@@ -24,8 +24,12 @@
         <span class="badge badge-pill badge-warning">默认</span>
       </td>
       <td>
-        <span class="badge badge-info mr-2">编辑</span>
-        <span class="badge badge-secondary">删除</span>
+        <span class="badge badge-info mr-2 cursor-pointer">编辑</span>
+        <span
+          class="badge badge-secondary cursor-pointer"
+          (click)="delete(contact.id)"
+          >删除</span
+        >
       </td>
     </tr>
     <tr *ngIf="!contacts?.length">

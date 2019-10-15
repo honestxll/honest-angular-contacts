@@ -1,0 +1,56 @@
+<div class="full-page login d-flex justify-content-center align-items-center">
+  <form
+    [formGroup]="signInForm"
+    (ngSubmit)="onSubmit()"
+    novalidate="novalidate"
+    class="wrapper d-flex flex-column justify-content-center align-items-center"
+  >
+    <div class="form-group">
+      <label>email</label>
+      <input
+        type="text"
+        name="email"
+        class="form-control {{
+          email.invalid && email.touched ? 'is-invalid' : ''
+        }}"
+        placeholder="输入邮箱"
+        formControlName="email"
+      />
+      <div class="invalid-feedback" *ngIf="email.hasError('required')">
+        邮箱不能为空
+      </div>
+      <div class="invalid-feedback" *ngIf="email.hasError('email')">
+        邮箱格式错误
+      </div>
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control {{
+          password.invalid && password.touched ? 'is-invalid' : ''
+        }}"
+        placeholder="输入密码"
+        formControlName="password"
+      />
+      <div class="invalid-feedback" *ngIf="password.hasError('required')">
+        密码不能为空
+      </div>
+      <div class="invalid-feedback" *ngIf="password.hasError('minlength')">
+        密码长度不能少于6位
+      </div>
+    </div>
+    <button type="submit" class="btn btn-secondary btn-block">Sign In</button>
+    <div class="message mt-1" *ngIf="formType === 'Sign In'">
+      <small>
+        <a class="text-muted" routerLink="/sign-up">没有帐号？先注册一个。</a>
+      </small>
+    </div>
+    <div class="message mt-1" *ngIf="formType === 'Sign Up'">
+      <small>
+        <a class="text-muted" routerLink="/sign-in">已注册，去登录。</a>
+      </small>
+    </div>
+  </form>
+</div>

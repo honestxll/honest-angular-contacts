@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { TagService } from 'src/app/services/tag.service';
 import { Toast } from 'src/app/utils/toast';
 import { Router } from '@angular/router';
@@ -10,23 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./new.component.less'],
 })
 export class NewComponent implements OnInit {
-  tagForm = this.formBuilder.group({
-    title: ['', Validators.required],
-  });
-  constructor(
-    private formBuilder: FormBuilder,
-    private tagService: TagService,
-    private router: Router,
-  ) {}
+  constructor(private tagService: TagService, private router: Router) {}
 
   ngOnInit() {}
 
-  get title() {
-    return this.tagForm.get('title');
-  }
-
-  onSubmit() {
-    this.tagService.store(this.tagForm.value).subscribe(() => {
+  onSubmit(tagForm) {
+    this.tagService.store(tagForm).subscribe(() => {
       Toast.fire({
         type: 'success',
         title: '保存成功',

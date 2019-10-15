@@ -3,6 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { TagService } from 'src/app/services/tag.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Toast } from 'src/app/utils/toast';
+import { Tag } from '../../../models/tag.model';
 
 @Component({
   selector: 'app-edit',

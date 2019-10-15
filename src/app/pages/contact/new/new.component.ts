@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
 import { Toast } from 'src/app/utils/toast';
 import { Router } from '@angular/router';
-import { TagService } from 'src/app/services/tag.service';
-import { Tag } from 'src/app/models/tag.model';
+import { Contact } from '../../../models/contact.model';
 
 @Component({
   selector: 'app-new',
@@ -12,49 +10,11 @@ import { Tag } from 'src/app/models/tag.model';
   styleUrls: ['./new.component.less'],
 })
 export class NewComponent implements OnInit {
-  tags: Tag[];
+  constructor(private contactService: ContactService, private router: Router) {}
 
-  contactForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(
-          /^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\d{8}$/,
-        ),
-      ],
-    ],
-    tagId: [0],
-  });
+  ngOnInit() {}
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private contactService: ContactService,
-    private tagService: TagService,
-    private router: Router,
-  ) {}
-
-  ngOnInit() {
-    this.tagService.index().subscribe((tags: Tag[]) => {
-      this.tags = tags;
-    });
-  }
-
-  get name() {
-    return this.contactForm.get('name');
-  }
-
-  get email() {
-    return this.contactForm.get('email');
-  }
-
-  get phone() {
-    return this.contactForm.get('phone');
-  }
-
-  onSubmit() {
+  onSubmit(contactForm: Contact) {
     const observer = {
       next: () => {
         Toast.fire({
@@ -72,8 +32,6 @@ export class NewComponent implements OnInit {
         });
       },
     };
-    return this.contactService
-      .store(this.contactForm.value)
-      .subscribe(observer);
+    return this.contactService.store(contactForm).subscribe(observer);
   }
 }

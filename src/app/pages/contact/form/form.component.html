@@ -1,0 +1,64 @@
+<h3 class="title">{{ isEdit ? '修改' : '新增' }} 联系人</h3>
+<hr />
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group">
+    <label>姓名</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control {{
+        name.invalid && name.touched ? 'is-invalid' : ''
+      }}"
+      placeholder="输入姓名"
+      formControlName="name"
+    />
+    <div class="invalid-feedback" *ngIf="name.hasError('required')">
+      姓名不能为空
+    </div>
+  </div>
+  <div class="form-group">
+    <label>邮箱</label>
+    <input
+      type="text"
+      name="email"
+      class="form-control {{
+        email.invalid && email.touched ? 'is-invalid' : ''
+      }}"
+      placeholder="输入邮箱"
+      formControlName="email"
+    />
+    <div class="invalid-feedback" *ngIf="email.hasError('required')">
+      邮箱不能为空
+    </div>
+    <div class="invalid-feedback" *ngIf="email.hasError('email')">
+      邮箱格式错误
+    </div>
+  </div>
+  <div class="form-group">
+    <label>手机号</label>
+    <input
+      type="text"
+      name="phone"
+      class="form-control {{
+        phone.invalid && phone.touched ? 'is-invalid' : ''
+      }}"
+      placeholder="输入手机号"
+      formControlName="phone"
+    />
+    <div class="invalid-feedback" *ngIf="phone.hasError('required')">
+      手机号不能为空
+    </div>
+    <div class="invalid-feedback" *ngIf="phone.hasError('pattern')">
+      手机号格式错误
+    </div>
+  </div>
+  <div class="form-group">
+    <label>标签</label>
+    <select class="form-control" name="tagId" formControlName="tagId">
+      <option value="0">默认</option>
+      <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.title }}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-secondary">保存</button>
+</form>

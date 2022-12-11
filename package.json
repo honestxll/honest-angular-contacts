@@ -51,7 +51,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.5.3",
     "blueimp-md5": "^2.10.0",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "json-server": "^0.12.1",
     "jwt-simple": "^0.5.1",
